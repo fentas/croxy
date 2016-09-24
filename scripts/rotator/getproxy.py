@@ -8,18 +8,17 @@ import requests
 
 number_of_proxies = 100
 request_proxies = 15
-timeout = os.environ.get("PROXY_TIMEOUT")
+timeout = os.environ.get("ROTATOR_PROXY_TIMEOUT")
 timeout = float(timeout) if timeout else 10.0
-filepath = os.environ.get("PROXY_FILE") or "./proxies.txt"
+filepath = os.environ.get("ROTATOR_PROXY_FILE") or "/data/rotator/proxies"
 
 proxies = []
 new_proxies = []
 ips = set()
 
-proxy_provider_url = "http://gimmeproxy.com/api/getProxy?get=true&" +\
-                     "protocol=http&supportsHttps=true"
-test_url = os.environ.get("CHECK_URL") or "https://www.google.com"
-test_for = os.environ.get("CHECK_FOR") or "initHistory"
+proxy_provider_url = os.environ.get("ROTATOR_GET_PROXY_SERVICE") or "http://gimmeproxy.com/api/getProxy?get=true&protocol=http&supportsHttps=true"
+test_url = os.environ.get("ROTATOR_CHECK_URL") or "https://www.google.com"
+test_for = os.environ.get("ROTATOR_CHECK_FOR") or "initHistory"
 
 async def fetch(proxy):
     conn = ProxyConnector(proxy=proxy)
@@ -86,6 +85,8 @@ def load_old_proxies():
         with open(filepath, 'r') as f:
             for line in f:
                 line = line.strip()
+                if line[0] == '#':
+                    continue
                 proxies.append({
                     'ipPort': line,
                     'address': "http://%s" % line,

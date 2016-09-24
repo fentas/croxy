@@ -1,0 +1,11 @@
+#
+# NOTICE: THIS FILE WILL BE OVERWRITTEN WITH NEW PROXIES.
+#         ALL HOST WILL BE SORTED BY REACTION TIME.
+#
+# Generated hosts from service.
+# Default source: http://gimmeproxy.com/api/getProxy?get=true&protocol=http&supportsHttps=true
+#
+# Each line contains a single host (<ip>:<port>).
+# You can predefine your own host here.
+#
+#104.155.152.48:3128
