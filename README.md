@@ -32,8 +32,6 @@
 #### Request Headers
 
 ###### **X-CrOxy-UA**
-> not implemented yet.
-
 This header controls CrOxy User-Agent behaviour. The supported values are:
 
 - pass - pass the User-Agent as it comes on the client request
@@ -45,8 +43,6 @@ This header controls CrOxy User-Agent behaviour. The supported values are:
 If `X-CrOxy-UA` isn’t specified, it will default to desktop. If an unsupported value is passed in `X-CrOxy-UA` header, CrOxy replies with a 540 Bad Header Value.
 
 ###### **X-CrOxy-No-Bancheck**
-> not implemented yet.
-
 This header instructs CrOxy not to check responses against its ban rules and pass any received response to the client. The presence of this header (with any value) is assumed to be a flag to disable ban checks.
 
 _Example_:
@@ -54,13 +50,11 @@ _Example_:
 X-CrOxy-No-Bancheck: 1
 ```
 
-###### [ ] **X-CrOxy-Cookies**
-> not implemented yet.
+- [ ] **X-CrOxy-Cookies**
 
 ...
 
-###### **X-CrOxy-Session**
-> not implemented yet.
+- [ ] **X-CrOxy-Session**
 
 This header instructs CrOxy to use sessions which will tie requests to a particular slave until it gets banned.
 
@@ -70,8 +64,7 @@ X-CrOxy-Session: create
 ```
 When create value is passed, CrOxy creates a new session an ID of which will be returned in the response header with the same name. All subsequent requests should use that returned session ID to prevent random slave switching between requests. CrOxy sessions default lifetime is 30 minutes.
 
-###### **X-CrOxy-JobId**
-> not implemented yet.
+- [ ] **X-CrOxy-JobId**
 
 This header sets the job ID for the request (useful for tracking requests in the CrOxy logs).
 
@@ -80,8 +73,7 @@ _Example_:
 X-CrOxy-JobId: 999
 ```
 
-###### **X-CrOxy-Max-Retries**
-> not implemented yet.
+- [ ] **X-CrOxy-Max-Retries**
 
 This header limits the number of retries performed by CrOxy.
 
@@ -92,8 +84,6 @@ X-CrOxy-Max-Retries: 1
 Passing 1 in the header instructs CrOxy to do up to 1 retry. Default number of retries is 5.
 
 ###### **X-CrOxy-Timeout**
-> not implemented yet.
-
 This header sets CrOxy's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 30,000 and 180,000. It’s not possible to set the timeout higher than 180,000 milliseconds or lower than 30,000 milliseconds, it will be rounded to its nearest maximum or minimum value.
 
 _Example_:
@@ -105,18 +95,12 @@ The example above sets the response timeout to 40,000 milliseconds. In the case 
 #### Response Headers
 
 ###### **X-CrOxy-Next-Request-In**
-> not implemented yet.
-
 This header is returned when response delay reaches the soft limit (_default: 120 seconds_) and contains the calculated delay value. If the user ignores this header, the hard limit (_default: 1000 seconds_) may be reached, after which CrOxy will return HTTP status code 503 with delay value in Retry-After header.
 
 ###### **X-CrOxy-Debug**
-> not implemented yet.
-
 This header activates tracking of additional debug values which are returned in response headers.
 
 ###### **X-CrOxy-Error**
-> not implemented yet.
-
 This header is returned when an error condition is met, stating a particular CrOxy error behind HTTP status codes (4xx or 5xx). The error message is sent in the response body.
 
 _Example_:
