@@ -59,6 +59,7 @@ RUN set -x \
 		zlib-dev \
 		iptables \
     zlib \
+    jq \
 	&& curl -SL "http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/haproxy-${HAPROXY_VERSION}.tar.gz" -o haproxy.tar.gz \
 	&& echo "${HAPROXY_MD5}  haproxy.tar.gz" | md5sum -c \
 	&& mkdir -p /usr/src \
